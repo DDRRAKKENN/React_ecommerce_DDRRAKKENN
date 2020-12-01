@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Producto from "./Producto"
-import Home from "./Home"
+import Producto from "./Pages/Producto"
+import Home from "./Pages/Home"
 
 class App extends Component{
   constructor(){
