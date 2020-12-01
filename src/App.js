@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import Producto from "./Producto"
+import Home from "./Home"
 
 class App extends Component{
   constructor(){
       super();
       this.state={
-        titulo:"Tienda de Calzados.",
+        titulo:"Tienda de Calzados",
         menu:["Nombre: Nike Superfly","Descripcion: Zapatilla deportiva ","Precio: $4300","SKU: NIKE-SPF-BLK-41","Cantidad disponible: 25"]
       }
   }
@@ -21,6 +22,7 @@ class App extends Component{
         <Producto data={this.state.menu}/>
         <button onClick={this.handleClick}>Comprar</button>
         <p><strong>{this.state.mensajeCompra}</strong></p>
+        <Home/>
       </>
         
     )
