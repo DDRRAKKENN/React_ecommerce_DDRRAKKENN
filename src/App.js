@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Producto from "./Pages/Producto"
 import Home from "./Pages/Home"
+import Registro from './Pages/Registro';
 
 class App extends Component{
   constructor(){
@@ -18,13 +19,13 @@ class App extends Component{
   render(){
     return(
       <>
+        <Registro/>
+        <Home/>
         <h1>{this.state.titulo}</h1>
         <Producto data={this.state.menu}/>
         <button onClick={this.handleClick}>Comprar</button>
         <p><strong>{this.state.mensajeCompra}</strong></p>
-        <Home/>
       </>
-        
     )
   }
 }
