@@ -17,7 +17,7 @@ class Datos extends Component{
                 <label>Apellidos <input type="text" placeholder="Ingrese su Apellido" /></label>
                 <br> 
                 </br>
-                <label>Email <input type="email"  placeholder="Ingrese correo electronico" /></label>
+                <label>Email <input type="email"  placeholder="Ingrese correo" /></label>
             </div>
         )
     };

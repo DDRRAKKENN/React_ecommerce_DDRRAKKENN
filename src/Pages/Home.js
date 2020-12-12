@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Productos from "../Components/Productos";
+import {getProductos} from "../Services/ProductosServices"
 
 class Home extends Component {
     constructor() {
@@ -10,11 +11,10 @@ class Home extends Component {
     };
 }
     componentDidMount() {
-        fetch("https://jsonfy.com/items")
-        .then(res => res.json())
-        .then((data)=>{
+        getProductos()
+        .then(data=>{
             this.setState({
-                productos:data,
+                productos:data.data,
                 loading:false
             })
         })
@@ -23,13 +23,13 @@ class Home extends Component {
         if(this.state.loading){
             return(
                 <div>
-                    loading....
+                    loading...
                 </div>
             )}
         else{
             return(
                 <div>
-                    <p><u><strong>Lista de Productos disponibles</strong></u></p>
+                    <h2>Lista de Productos disponibles</h2>
                     {this.state.productos.map(producto=><Productos productos={producto}/>)}
                 </div>
             )

@@ -4,7 +4,7 @@ class Producto extends Component{
     render(){
         return(
         <form className="Producto">
-            {this.props.data.map(menu=><ul><li>{menu}</li></ul>)}
+            {this.props.data.map(menu=><li>{menu}</li>)}
         </form> 
         )
     }

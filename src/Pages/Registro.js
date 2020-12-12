@@ -13,6 +13,7 @@ class Registro extends Component{
     render(){
         return(
             <form>
+                <h2>Registro Usuario</h2>
                 <Datos/>
                 <br/>
                 <Validacion/>

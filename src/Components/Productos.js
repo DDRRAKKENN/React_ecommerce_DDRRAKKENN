@@ -1,14 +1,18 @@
+import { Link } from 'react-router-dom'
+import Button from "react-bootstrap/Button"
+import Card from 'react-bootstrap/Card'
+
 function Productos(props){
     return(
         <div>
-            <div><b>Producto:</b> {props.productos.name}</div>
-            <div><b>Descripcion:</b> {props.productos.description}</div>
-            <div><b>Precio:</b> ${props.productos.price} (Dolares Americanos.)</div>
-            <button>Ver Detalle</button>
-            <p></p>
+            <Card style={{ width: '18rem' }}>
+                <Card.Body>
+                    <Card.Title><b>{props.productos.name}</b></Card.Title>
+                    <Link to={"/productos/"+props.productos.id}><Button variant ="outline-primary">Ver Detalle</Button></Link>
+                </Card.Body>
+                </Card>
         </div>
     );
 }
-    
         
-export default Productos;
+export default Productos; 
