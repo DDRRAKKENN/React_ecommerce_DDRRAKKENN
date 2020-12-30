@@ -18,10 +18,10 @@ function ProductoDetalle(props){
     )
     return(
             <>
-                <h2>{producto.data.name}</h2>
-                <div><b>Nombre del producto: </b>{producto.data.name}.</div>
-                <div><b>Descripcion: </b>{producto.data.description}.</div>
-                <div><b>Precio al consumidor: </b>${producto.data.price}(Dolares Americanos).</div>
+                <h2>{producto.data().name}</h2>
+                <div><b>Nombre del producto: </b>{producto.data().name}.</div>
+                <div><b>Descripcion: </b>{producto.data().description}.</div>
+                <div><b>Precio al consumidor: </b>${producto.data().price}(Dolares Americanos).</div>
                 <Link><Button variant ="primary">Comprar!</Button></Link>
             </>
     )
