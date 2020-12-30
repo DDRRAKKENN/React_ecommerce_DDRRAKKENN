@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Productos from "../Components/Productos";
-import {getProductos} from "../Services/ProductosServices"
+//import {getProductos} from "../Services/ProductosServices";
+import firebase from "../Config/firebase";
 
 class Home extends Component {
     constructor() {
@@ -11,19 +12,20 @@ class Home extends Component {
     };
 }
     componentDidMount() {
-        getProductos()
-        .then(data=>{
+        firebase.db.collection("productos")
+        .get()
+        .then(querySnapshot=>{
             this.setState({
-                productos:data.data,
-                loading:false
+                productos:querySnapshot.docs,
+                loading:false,
             })
-        })
+    })
 }
     render() {
         if(this.state.loading){
             return(
                 <div>
-                    loading...
+                    Keep calm and wait...
                 </div>
             )}
         else{
@@ -33,7 +35,6 @@ class Home extends Component {
                     {this.state.productos.map(producto=><Productos productos={producto}/>)}
                 </div>
             )
-                
         }
     }
 }
