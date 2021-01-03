@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import {Card, Form, Button, Spinner} from "react-bootstrap";
 import firebase from "../Config/firebase";
+import ButtonWithLoading from "../Components/Forms/ButtonWithLoading";
+import FormGroup from "../Components/Forms/FormGroup";
 
 function Registro(){
     const [form, setForm] = useState({nombre:'',apellido:'',email:'',password:''});
@@ -51,34 +53,14 @@ function Registro(){
             <Card.Title>Registrarse</Card.Title>
             
                 <Form onSubmit={handleSubmit}>
-                    <Form.Group controlId="formBasic">
-                        <Form.Label>Nombre</Form.Label>
-                        <Form.Control type="text" placeholder="Ingrese su nombre" name="nombre" value={form.nombre} onChange={handleChange}/>
-                        
-                    </Form.Group>
-                    <Form.Group controlId="formBasic">
-                        <Form.Label>Apellido</Form.Label>
-                        <Form.Control type="text" placeholder="Ingrese su apellido" name="apellido" value={form.apellido} onChange={handleChange} />
-                        
-                    </Form.Group>
-                    <Form.Group controlId="formBasic">
-                        <Form.Label>Email</Form.Label>
-                        <Form.Control type="email" placeholder="Ingrese su email" name="email" value={form.email} onChange={handleChange} />
-                        
-                    </Form.Group>
 
-                    <Form.Group controlId="formBasic">
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="coloque su Password" name="password" value={form.password} onChange={handleChange} />
-                    </Form.Group>
+                    <FormGroup label="Nombre" type="text" placeholder="Ingrese su nombre" name="nombre" value={form.nombre} change={handleChange}/>
+                    <FormGroup label="Apellido" type="text" placeholder="Ingrese su apellido" name="apellido" value={form.apellido} change={handleChange}/>
+                    <FormGroup label="Email" type="email" placeholder="Ingrese su E-mail" name="email" value={form.email} change={handleChange}/>
+                    <FormGroup label="Password" type="password" placeholder="Ingrese su contraseña" name="password" value={form.password} change={handleChange}/>
+                    
+                    <ButtonWithLoading text="Registrarse" loading={spinner}/>
 
-                    <Button variant="primary" type="submit">
-                        {
-                            spinner && 
-                            <Spinner animation="grow" variant="light" size="sm" />
-                        }
-                         Registrarse
-                    </Button>
                 </Form>
             </Card.Body>
         </Card>

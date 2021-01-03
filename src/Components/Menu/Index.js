@@ -10,10 +10,11 @@ function Menu(props){
     return(
         <>
             <Navbar bg="dark" variant="dark">
-                <Navbar.Brand >Tienda Electronica</Navbar.Brand>
-                    <Nav className="mr-auto">
-                        <Nav.Link>{props.data.map(opciones=><OptionMenu opciones={opciones}/>)}</Nav.Link>
-                    </Nav>
+                <Navbar.Brand href="/" >Tienda Electronica</Navbar.Brand>
+                <Navbar.Toggle/>
+                    <Navbar className="mr-auto">
+                        <Nav.Link>{props.data.map(opciones=><OptionMenu key={opciones.label} opciones={opciones}/>)}</Nav.Link>
+                    </Navbar>
                 <Form inline>
                     <FormControl type="text" placeholder="Search" className="mr-sm-2" />
                     <Button variant="outline-info">Buscar</Button>

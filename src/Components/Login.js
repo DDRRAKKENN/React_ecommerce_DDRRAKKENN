@@ -1,10 +1,18 @@
 import React, {useState} from "react";
-import {Card, Form, Button, Spinner} from "react-bootstrap";
+import {useHistory} from "react-router-dom";
+import {Card, Form} from "react-bootstrap";
 import firebase from "../Config/firebase";
+import ButtonWithLoading from "../Components/Forms/ButtonWithLoading"
+import FormGroup from "../Components/Forms/FormGroup";
+import AlertCustom from "../Components/AlertCustom"
 
 function Login(){
+
     const [form, setForm] = useState({email:'',password:''});
     const [spinner, setSpinner] = useState(false);
+    const [alert,setAlert]= useState({variant:"",text:""})
+    const history=useHistory();
+
     const handleSubmit = (e)=>{
         e.preventDefault();     
         setSpinner(true);
@@ -13,16 +21,18 @@ function Login(){
         firebase.auth.signInWithEmailAndPassword(email, password)
         .then((data)=>{
             console.log("Usuario logueado", data)
+            setAlert({variant:"succes",text:"Bienvendo a la pagina!"})
+            history.push("/")
             
         })
         .catch((error)=>{
             console.log("Error",error)
             setSpinner(false);
+            setAlert({variant:"Error",text:"Ha ocurrido un problema."})
         })
         
     }
     const handleChange = (e)=>{
-
     const target = e.target;
     const value = target.value
     const name = target.name;
@@ -37,25 +47,13 @@ function Login(){
             <Card.Title>Login</Card.Title>
             
                 <Form onSubmit={handleSubmit}>
-                    <Form.Group controlId="formBasic">
-                        <Form.Label>Email</Form.Label>
-                        <Form.Control type="email" placeholder="Ingrese su email" name="email" value={form.email} onChange={handleChange} />
-                        
-                    </Form.Group>
-
-                    <Form.Group controlId="formBasic">
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="coloque su Password" name="password" value={form.password} onChange={handleChange} />
-                    </Form.Group>
-
-                    <Button variant="primary" type="submit">
-                        {
-                            spinner && 
-                            <Spinner animation="grow" variant="light" size="sm" />
-                        }
-                        Ingrese
-                    </Button>
+                    <FormGroup label="Email" type="email" placeholder="Ingrese su E-mail" name="email" value={form.email} change={handleChange}/>
+                    <FormGroup label="Password" type="password" placeholder="Ingrese su contraseña" name="password" value={form.password} change={handleChange}/>
+                    <ButtonWithLoading text="Ingresar" loading={spinner}/>
                 </Form>
+
+                <AlertCustom variant={alert.variant} text={alert.text}/>
+
             </Card.Body>
         </Card>
     )

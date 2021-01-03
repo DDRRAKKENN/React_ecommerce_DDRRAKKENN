@@ -32,7 +32,7 @@ class Home extends Component {
             return(
                 <div>
                     <h2>Lista de Productos disponibles</h2>
-                    {this.state.productos.map(producto=><Productos productos={producto}/>)}
+                    {this.state.productos.map(producto=><Productos key={producto.id} productos={producto}/>)}
                 </div>
             )
         }
