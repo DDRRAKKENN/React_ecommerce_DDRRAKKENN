@@ -1,6 +1,7 @@
 import { BrowserRouter} from 'react-router-dom' 
 import Menu from "./Components/Menu/Index"
 import RoutesWeb from "./Components/RoutesWeb/RoutesWeb"
+import GlobalState from "./Context/GlobalState"
 
 function App(){
         const opciones=[
@@ -19,10 +20,12 @@ function App(){
     ];
     
     return(
-        <BrowserRouter>
-            <Menu data={opciones}/>
-            <RoutesWeb/>
-        </BrowserRouter>
+        <GlobalState>
+            <BrowserRouter>
+                <Menu data={opciones}/>
+                <RoutesWeb/>
+            </BrowserRouter>
+        </GlobalState>
     )
 }
 

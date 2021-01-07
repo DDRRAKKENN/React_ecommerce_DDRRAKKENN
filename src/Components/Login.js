@@ -1,13 +1,15 @@
-import React, {useState} from "react";
+import React, {useState,useContext} from "react";
 import {useHistory} from "react-router-dom";
 import {Card, Form} from "react-bootstrap";
 import firebase from "../Config/firebase";
-import ButtonWithLoading from "../Components/Forms/ButtonWithLoading"
+import ButtonWithLoading from "../Components/Forms/ButtonWithLoading";
 import FormGroup from "../Components/Forms/FormGroup";
 import AlertCustom from "../Components/AlertCustom"
+import NetContext from "../Context/NetContext";
 
 function Login(){
 
+    const context=useContext(NetContext)
     const [form, setForm] = useState({email:'',password:''});
     const [spinner, setSpinner] = useState(false);
     const [alert,setAlert]= useState({variant:"",text:""})
@@ -21,10 +23,12 @@ function Login(){
         firebase.auth.signInWithEmailAndPassword(email, password)
         .then((data)=>{
             console.log("Usuario logueado", data)
+            setSpinner(false);
+            context.loginUser();
             setAlert({variant:"succes",text:"Bienvendo a la pagina!"})
             history.push("/")
             
-        })
+        }) 
         .catch((error)=>{
             console.log("Error",error)
             setSpinner(false);
